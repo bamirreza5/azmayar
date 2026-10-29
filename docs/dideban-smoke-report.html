@@ -1,0 +1,133 @@
+<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>گزارش آزمایار</title>
+<style>body{font:15px/1.9 Tahoma,Arial,sans-serif;max-width:1100px;margin:40px auto;padding:0 24px;color:#19263b}h1{color:#1845c2}table{border-collapse:collapse;width:100%;margin:20px 0}td,th{border:1px solid #dce3ee;padding:12px;text-align:right}th{background:#eff4ff}pre{white-space:pre-wrap;overflow-wrap:anywhere;direction:ltr;text-align:left;font:12px/1.6 monospace}.pass{color:#137f54}.fail{color:#bb2849}.warn{color:#986200}.skip{color:#63708a}.note{padding:16px;background:#f3f6fb;border-radius:12px}@media print{body{font-size:11px;margin:10px}tr{break-inside:avoid}}</style>
+<h1>آزمایار · گزارش آزمون نرم‌افزار</h1><p>تکمیل شد · 2026-10-29</p>
+<p dir="ltr">https://github.com/bamirreza5/Dideban<br>Commit: 5e2e6c46339812d5fa1a2c2db0bc6ce2bfd0ae01</p>
+<p class="note">قبولی آزمون‌ها به معنای نبودن تمام خطاهای نرم‌افزار نیست. نتیجه فقط به آزمون‌های اجراشده و نسخهٔ ثبت‌شده مربوط است. این گزارش از محیط آزمایشی تولید شده است.</p>
+<h2>نتایج بررسی‌ها</h2><table><thead><tr><th>بررسی</th><th>وضعیت</th><th>جزئیات و شواهد</th></tr></thead><tbody><tr><td>شناسایی پروژه</td><td class="pass">موفق</td><td><pre>Profile: django; root: .</pre></td></tr><tr><td>نصب وابستگی‌های Python</td><td class="pass">موفق</td><td><pre>Collecting Django==5.2.17 (from -r requirements.txt (line 1))
+  Using cached django-5.2.17-py3-none-any.whl.metadata (4.1 kB)
+Collecting asgiref&gt;=3.8.1 (from Django==5.2.17-&gt;-r requirements.txt (line 1))
+  Using cached asgiref-3.13.0-py3-none-any.whl.metadata (12 kB)
+Collecting sqlparse&gt;=0.3.1 (from Django==5.2.17-&gt;-r requirements.txt (line 1))
+  Using cached sqlparse-0.6.0-py3-none-any.whl.metadata (6.0 kB)
+Using cached django-5.2.17-py3-none-any.whl (8.3 MB)
+Using cached asgiref-3.13.0-py3-none-any.whl (27 kB)
+Using cached sqlparse-0.6.0-py3-none-any.whl (50 kB)
+Installing collected packages: sqlparse, asgiref, Django
+Successfully installed Django-5.2.17 asgiref-3.13.0 sqlparse-0.6.0
+</pre></td></tr><tr><td>نحو فایل‌های Python</td><td class="pass">موفق</td><td><pre>Parsed 50 files.
+</pre></td></tr><tr><td>تنظیمات انتشار Django</td><td class="pass">موفق</td><td><pre>Audit uses test environment variables, not live production configuration.
+System check identified no issues (0 silenced).
+</pre></td></tr><tr><td>بررسی ساختار Django</td><td class="pass">موفق</td><td><pre>System check identified no issues (0 silenced).
+</pre></td></tr><tr><td>ساخت دیتابیس آزمایشی</td><td class="pass">موفق</td><td><pre>Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, customers, projects, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying customers.0001_initial... OK
+  Applying customers.0002_followup_alter_customer_options_customer_address_and_more... OK
+  Applying projects.0001_initial... OK
+  Applying projects.0002_alter_project_options_project_deadline_and_more... OK
+  Applying sessions.0001_initial... OK
+</pre></td></tr><tr><td>تست‌های مخزن</td><td class="pass">موفق</td><td><pre>Found 23 test(s).
+Creating test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
+Operations to perform:
+  Synchronize unmigrated apps: humanize, messages, staticfiles
+  Apply all migrations: admin, auth, contenttypes, customers, projects, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying customers.0001_initial... OK
+  Applying customers.0002_followup_alter_customer_options_customer_address_and_more... OK
+  Applying projects.0001_initial... OK
+  Applying projects.0002_alter_project_options_project_deadline_and_more... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_login_page_is_available (accounts.tests.AuthenticationTests.test_login_page_is_available) ... ok
+test_logout_requires_post (accounts.tests.AuthenticationTests.test_logout_requires_post) ... ok
+test_valid_login_redirects_to_dashboard (accounts.tests.AuthenticationTests.test_valid_login_redirects_to_dashboard) ... ok
+test_create_assigns_owner_and_normalizes_persian_digits (customers.tests.CustomerViewTests.test_create_assigns_owner_and_normalizes_persian_digits) ... ok
+test_csv_export_does_not_leak_other_users_data (customers.tests.CustomerViewTests.test_csv_export_does_not_leak_other_users_data) ... ok
+test_customer_detail_prevents_cross_user_access (customers.tests.CustomerViewTests.test_customer_detail_prevents_cross_user_access) ... ok
+test_customer_with_project_cannot_be_deleted (customers.tests.CustomerViewTests.test_customer_with_project_cannot_be_deleted) ... ok
+test_duplicate_phone_returns_form_error_instead_of_server_error (customers.tests.CustomerViewTests.test_duplicate_phone_returns_form_error_instead_of_server_error) ... ok
+test_list_only_displays_current_users_customers (customers.tests.CustomerViewTests.test_list_only_displays_current_users_customers) ... ok
+test_list_requires_authentication (customers.tests.CustomerViewTests.test_list_requires_authentication) ... ok
+test_followup_owner_must_match_customer_owner (customers.tests.FollowUpTests.test_followup_owner_must_match_customer_owner) ... ok
+test_other_user_cannot_toggle_followup (customers.tests.FollowUpTests.test_other_user_cannot_toggle_followup) ... ok
+test_toggle_marks_followup_complete_and_updates_last_contact (customers.tests.FollowUpTests.test_toggle_marks_followup_complete_and_updates_last_contact) ... ok
+test_toggle_rejects_external_next_redirect (customers.tests.FollowUpTests.test_toggle_rejects_external_next_redirect) ... ok
+test_dashboard_aggregates_only_current_users_data (dashboard.tests.DashboardTests.test_dashboard_aggregates_only_current_users_data) ... ok
+test_dashboard_requires_login (dashboard.tests.DashboardTests.test_dashboard_requires_login) ... ok
+test_deadline_cannot_precede_start_date (projects.tests.ProjectModelTests.test_deadline_cannot_precede_start_date) ... ok
+test_done_project_progress_is_forced_to_100 (projects.tests.ProjectModelTests.test_done_project_progress_is_forced_to_100) ... ok
+test_financial_properties (projects.tests.ProjectModelTests.test_financial_properties) ... ok
+test_cannot_create_project_for_another_users_customer (projects.tests.ProjectViewTests.test_cannot_create_project_for_another_users_customer) ... ok
+test_csv_export_does_not_leak_other_users_projects (projects.tests.ProjectViewTests.test_csv_export_does_not_leak_other_users_projects) ... ok
+test_detail_prevents_cross_user_access (projects.tests.ProjectViewTests.test_detail_prevents_cross_user_access) ... ok
+test_list_only_displays_owned_projects (projects.tests.ProjectViewTests.test_list_only_displays_owned_projects) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 5.427s
+
+OK
+Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
+</pre></td></tr><tr><td>اجرای سرور</td><td class="pass">موفق</td><td><pre>HTTP 200; ready after 0.32s</pre></td></tr><tr><td>بررسی مرورگر</td><td class="skip">اجرا نشد</td><td><pre>Disabled by user. Django HTTP login is attempted independently for the load test.</pre></td></tr><tr><td>ورود HTTP برای فشار</td><td class="pass">موفق</td><td><pre>Temporary Django account; no browser interaction was performed.</pre></td></tr><tr><td>آزمون فشار HTTP</td><td class="pass">موفق</td><td><pre>{
+  &quot;requests&quot;: 64,
+  &quot;errors&quot;: 0,
+  &quot;error_percent&quot;: 0.0,
+  &quot;rps&quot;: 12.48,
+  &quot;elapsed_s&quot;: 5.13,
+  &quot;p50_ms&quot;: 9.0,
+  &quot;p95_ms&quot;: 15.96,
+  &quot;p99_ms&quot;: 17.02,
+  &quot;users&quot;: 2,
+  &quot;requested_duration_s&quot;: 5,
+  &quot;authenticated&quot;: true,
+  &quot;paths&quot;: [
+    &quot;/&quot;,
+    &quot;/customers/&quot;,
+    &quot;/projects/&quot;,
+    &quot;/customers/followups/&quot;
+  ],
+  &quot;status_codes&quot;: {
+    &quot;200&quot;: 64
+  },
+  &quot;error_examples&quot;: []
+}</pre></td></tr><tr><td>پایش منابع برنامه</td><td class="warn">هشدار</td><td><pre>No process samples were available. Values are unknown, not zero. process PID not found (pid=54)</pre></td></tr></tbody></table>
+<h2>مصرف منابع</h2><table><tr><th>دامنه</th><th>تعداد نمونه</th><th>میانگین CPU ٪</th><th>بیشینه CPU ٪</th><th>بیشینه RAM (MiB)</th></tr><tr><td>فرایندهای برنامه</td><td>0</td><td>—</td><td>—</td><td>—</td></tr><tr><td>کل کانتینر</td><td>0</td><td>—</td><td>—</td><td>—</td></tr><tr><td>کل سیستم میزبان</td><td>0</td><td>—</td><td>—</td><td>—</td></tr></table>
+<p>CPU برنامه و کانتینر: ۱۰۰٪ برابر یک هسته است. CPU میزبان: درصد کل ظرفیت سیستم. حافظه برنامه مجموع RSS فرایندهای سرور است و ممکن است صفحات اشتراکی را دوباره بشمارد. منابع کانتینر شامل نصب، تست و مرورگر نیز هست؛ منابع میزبان شامل سایر برنامه‌هاست. نمونهٔ ثبت‌نشده با خط تیره نمایش داده می‌شود.</p>
+<h2>آزمون فشار HTTP</h2><p dir="ltr">requests: 64 | errors: 0 | error_percent: 0.0 | rps: 12.48 | p50_ms: 9.0 | p95_ms: 15.96 | p99_ms: 17.02 | elapsed_s: 5.13</p><p>این آزمون درخواست HTTP می‌فرستد؛ کاربران هم‌زمانِ مرورگر کامل را شبیه‌سازی نمی‌کند. زمان پاسخ با ساعت یکنواخت اندازه‌گیری می‌شود.</p>
+<h2>حدود بررسی</h2><ul><li>این گزارش از بررسی محلی در محیط مجازی موقت Python تهیه شده است؛ اجرای Docker نیست.</li><li>تست‌های ۲۳گانهٔ Django و درخواست‌های HTTP واقعاً اجرا شده‌اند؛ Chromium و سناریوی مرورگر در این بررسی اجرا نشده‌اند.</li><li>فرایند مقصد برای psutil این محیط قابل مشاهده نبود؛ هیچ عددی برای CPU و RAM به عنوان اندازه‌گیری معتبر ارائه نمی‌شود.</li><li>این آزمون کوتاه با ۲ کاربر HTTP و ۵ ثانیه فشار، معیار ظرفیت تولید یا نبودن همهٔ خطاها نیست.</li></ul><h2>خروجی اجرا</h2><pre></pre></html>

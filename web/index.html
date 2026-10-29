@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="آزمایار؛ تست مخزن نرم‌افزار، بررسی خطا و پایش منابع در محیط آزمایشی">
+  <title>آزمایار | آزمایشگاه نرم‌افزار</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true"><defs>
+ <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></symbol>
+ <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 20"/></symbol>
+ <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-5 4 3 6-8"/></symbol>
+ <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+ <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="15" rx="5"/><path d="m9 6-2-3m8 3 2-3M3 9h4m10 0h4M3 15h4m10 0h4m-9-10v15"/></symbol>
+ <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+ <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+ <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M20 12H4m7-7-7 7 7 7"/></symbol>
+</defs></svg>
+
+<aside class="sidebar">
+ <a href="#" class="brand" aria-label="آزمایار، صفحه اصلی"><span class="brand-mark"><svg><use href="#i-code"/></svg></span><span>آزمایار<small>REPOSITORY TEST LAB</small></span></a>
+ <div class="workspace-name"><span class="workspace-icon">A</span><span>فضای آزمایش شخصی<small>اجرا روی سیستم شما</small></span><span class="workspace-dot"></span></div>
+ <div class="nav-caption">فضای کار</div>
+ <nav aria-label="منوی اصلی">
+  <button class="nav-link active" data-nav="overview"><svg><use href="#i-grid"/></svg>نمای کلی<span class="nav-key">۰۱</span></button>
+  <button class="nav-link" data-nav="checks"><svg><use href="#i-bug"/></svg>نتایج و خطاها<span id="navIssueCount" class="nav-count">—</span></button>
+  <button class="nav-link" data-nav="resources"><svg><use href="#i-chart"/></svg>مصرف منابع</button>
+  <button class="nav-link" data-nav="logs"><svg><use href="#i-code"/></svg>خروجی اجرا</button>
+  <button class="nav-link" data-nav="history"><svg><use href="#i-clock"/></svg>تاریخچه آزمون‌ها</button>
+ </nav>
+ <div class="sidebar-bottom"><div class="isolation"><span class="tiny-icon">◇</span><div>محیط اجرای مجزا<small>کد مقصد داخل Docker اجرا می‌شود.</small></div></div><button class="help-button" id="helpButton"><svg><use href="#i-info"/></svg>راهنمای شروع</button><div class="version">آزمایار <span dir="ltr">v1.0.0</span></div></div>
+</aside>
+
+<main>
+ <header class="topbar"><div class="breadcrumb">فضای کار <span>/</span> <strong id="pageTitle">نمای کلی</strong></div><div class="topbar-end"><span class="local-badge"><span></span>نسخه محلی</span><button class="avatar" aria-label="فضای شخصی">A</button></div></header>
+ <div class="content">
+  <div class="page-heading"><div><div class="eyebrow">آزمایشگاه کیفیت نرم‌افزار</div><h1 id="heading">از مخزن تا گزارش خطا<span>.</span></h1><p>مخزن را معرفی کنید؛ آزمون‌ها، خطاها و مصرف منابع را یک‌جا ببینید.</p></div><div class="heading-status" id="healthBadge"><span class="status-dot"></span><span>بررسی محیط اجرا…</span></div></div>
+  <div class="notice" id="healthNotice" hidden><svg><use href="#i-info"/></svg><span id="healthText"></span><button id="healthHelp">راهنما</button></div>
+  <div class="notice" id="previewNotice" hidden><span>پیش‌نمایش رابط، فقط خواندنی است. آزمون واقعی را با نسخهٔ دانلودشده اجرا کنید.</span></div>
+
+  <section id="view-overview" class="view">
+   <div class="top-grid">
+    <section class="panel repository-panel">
+     <div class="panel-heading"><div class="panel-title"><span class="icon-tile blue"><svg><use href="#i-code"/></svg></span><div><h2>آزمون جدید</h2><p>یک نسخه تازه از مخزن دریافت می‌شود.</p></div></div><span class="micro-label">GIT → TEST</span></div>
+     <form id="runForm">
+      <label for="repoUrl">آدرس مخزن عمومی</label>
+      <div class="url-field"><svg><use href="#i-code"/></svg><input id="repoUrl" name="repo_url" type="url" dir="ltr" value="https://github.com/bamirreza5/Dideban" required autocomplete="url" spellcheck="false"></div>
+      <div class="form-row"><div><label for="profile">نوع پروژه</label><select id="profile"><option value="auto">شناسایی خودکار</option><option value="django">Django</option><option value="node">Node.js / npm</option><option value="python">Python سفارشی</option></select></div><div><label for="branch">شاخه <span>اختیاری</span></label><input id="branch" dir="ltr" placeholder="پیش‌فرض مخزن" maxlength="120" spellcheck="false"></div></div>
+      <div class="test-options"><label><input id="runTests" type="checkbox" checked><span>تست‌های مخزن</span></label><label><input id="runBrowser" type="checkbox" checked><span>بررسی مرورگر</span></label><label><input id="runLoad" type="checkbox" checked><span>آزمون فشار</span></label></div>
+      <div class="load-options"><div><label for="users">کاربر HTTP هم‌زمان</label><input id="users" type="number" min="1" max="50" value="5"></div><div><label for="duration">مدت فشار <span>ثانیه</span></label><input id="duration" type="number" min="5" max="120" value="15"></div><div><label for="maxPages">حداکثر صفحات</label><input id="maxPages" type="number" min="1" max="30" value="12"></div></div>
+      <details class="advanced"><summary>تنظیمات پیشرفته و سناریوها <span>＋</span></summary><div class="advanced-body">
+       <div class="form-row"><div><label for="subdir">زیرپوشه پروژه</label><input id="subdir" dir="ltr" placeholder="backend (اختیاری)"></div><div><label for="djangoSettings">ماژول تنظیمات Django</label><input id="djangoSettings" dir="ltr" placeholder="config.settings (اختیاری)"></div></div>
+       <label for="paths">مسیرهای شروع <span>هر مسیر در یک خط</span></label><textarea id="paths" dir="ltr" rows="4">/</textarea>
+       <div class="load-options"><div><label for="memory">RAM کانتینر <span>MiB</span></label><input id="memory" type="number" min="512" max="8192" value="2048"></div><div><label for="cpus">سقف هسته CPU</label><input id="cpus" type="number" min="1" max="8" value="2"></div><div><label for="timeout">زمان کل <span>دقیقه</span></label><input id="timeout" type="number" min="3" max="60" value="25"></div></div>
+       <label for="slowMs">آستانه هشدار کندی <span>میلی‌ثانیه</span></label><input id="slowMs" type="number" min="100" max="30000" value="1500">
+       <label for="setupCommand">فرمان آماده‌سازی <span>اختیاری · فقط داخل کانتینر</span></label><input id="setupCommand" dir="ltr" placeholder="python manage.py seed_demo">
+       <label for="testCommand">فرمان تست اختصاصی <span>جایگزین تست پیش‌فرض</span></label><input id="testCommand" dir="ltr" placeholder="python -m pytest -q">
+       <label for="startCommand">فرمان شروع اختصاصی <span>پورت باید 8765 باشد</span></label><input id="startCommand" dir="ltr" placeholder="uvicorn main:app --host 127.0.0.1 --port 8765">
+       <label class="deploy-checkbox"><input id="runDeployCheck" type="checkbox" checked>بررسی تنظیمات انتشار Django در محیط آزمایش</label>
+       <div class="label-row"><label for="scenarios">سناریوهای گردش کار <span>JSON</span></label><button type="button" id="exampleScenario" class="text-button">نمونهٔ دیدبان</button></div>
+       <textarea id="scenarios" dir="ltr" rows="6" spellcheck="false">[]</textarea><p class="field-note">عملیات: goto، fill، click، select، check، expect_text و expect_url. فرم‌ها فقط طبق سناریوی شما ارسال می‌شوند.</p>
+       <div class="config-actions"><button type="button" id="exportConfig" class="small-button">ذخیره تنظیمات</button><label class="small-button import-label" for="importConfig">ورود تنظیمات</label><input id="importConfig" type="file" accept=".json" hidden></div>
+      </div></details>
+      <div class="form-error" id="formError" role="alert" hidden></div>
+      <button class="primary-button" id="startButton" type="submit"><svg><use href="#i-play"/></svg><span>شروع آزمون</span><span class="button-arrow">←</span></button>
+      <p class="under-button">اجرای اول برای دریافت محیط مرورگر به اینترنت و زمان بیشتری نیاز دارد.</p>
+     </form>
+    </section>
+    <section class="panel execution-panel">
+     <div class="panel-heading"><h2>وضعیت اجرای آزمون</h2><span class="pill neutral" id="jobState">آمادهٔ شروع</span></div>
+     <div class="execution-empty" id="executionEmpty"><div class="orb"><svg><use href="#i-play"/></svg><span class="orbit one"></span><span class="orbit two"></span></div><h3>اولین آزمون را شروع کنید</h3><p>پیشرفت هر مرحله و نتیجهٔ واقعی بررسی‌ها<br>در این بخش نمایش داده می‌شود.</p></div>
+     <div class="execution-active" id="executionActive" hidden><div class="job-repo" id="jobRepo" dir="ltr"></div><div class="progress-caption"><span id="phaseLabel">دریافت مخزن</span><span id="progressText">۰٪</span></div><div class="progress-bar"><div id="progressFill"></div></div><div class="commit-info" id="commitInfo" dir="ltr"></div><div class="execution-actions"><button class="small-button danger" id="cancelButton">توقف آزمون</button><button class="small-button" id="showLogsButton">دیدن خروجی اجرا</button></div><div id="unitSummary" class="unit-summary"></div></div>
+     <div class="pipeline" id="pipeline"><div data-phase="clone"><span>۱</span>دریافت کد</div><div data-phase="install"><span>۲</span>آماده‌سازی</div><div data-phase="tests"><span>۳</span>تست مخزن</div><div data-phase="browser"><span>۴</span>مرورگر</div><div data-phase="load"><span>۵</span>آزمون فشار</div><div data-phase="report"><span>۶</span>گزارش</div></div>
+     <div class="execution-footer"><span class="small-dot"></span><p>نتیجه‌ها پس از اجرای هر مرحله ثبت می‌شوند.</p><span id="elapsed">—</span></div>
+    </section>
+   </div>
+   <div class="stats-grid">
+    <article class="stat-card"><span class="stat-icon blue"><svg><use href="#i-check"/></svg></span><p>بررسی‌های موفق</p><div><strong id="statPassed">—</strong><span>بررسی</span></div><small id="statTotal">هنوز آزمونی اجرا نشده</small></article>
+    <article class="stat-card"><span class="stat-icon rose"><svg><use href="#i-bug"/></svg></span><p>خطاهای شناسایی‌شده</p><div><strong id="statFailed">—</strong><span>خطا</span></div><small id="statWarnings">پس از اجرا مشخص می‌شود</small></article>
+    <article class="stat-card"><span class="stat-icon violet"><svg><use href="#i-chip"/></svg></span><p>بیشینه CPU برنامه</p><div><strong id="statCpu">—</strong><span>٪ یک هسته</span></div><small>فقط فرایندهای سرور برنامه</small></article>
+    <article class="stat-card"><span class="stat-icon teal"><svg><use href="#i-chart"/></svg></span><p>بیشینه RAM برنامه</p><div><strong id="statMemory">—</strong><span>MiB</span></div><small>مجموع RSS فرایندهای سرور</small></article>
+   </div>
+   <section class="panel chart-panel"><div class="panel-heading"><div><h2>نبض منابع برنامه</h2><p>مصرف سرور در طول بررسی مرورگر و آزمون فشار</p></div><div class="chart-legend"><span><i class="legend-cpu"></i>CPU</span><span><i class="legend-memory"></i>RAM</span></div></div><div class="chart-wrap"><canvas id="overviewChart" aria-label="نمودار مصرف CPU و RAM برنامه"></canvas><div class="chart-empty" id="overviewChartEmpty"><svg><use href="#i-chart"/></svg><span>منتظر اولین نمونهٔ مصرف منابع</span></div></div><div class="chart-footer"><span>CPU: هر ۱۰۰٪ برابر یک هسته</span><button class="text-button" id="resourceDetails">مشاهده جزئیات ←</button></div></section>
+   <div class="bottom-note"><svg><use href="#i-info"/></svg><span>قبولی تست‌ها به معنای نبودن تمام خطاها نیست. برای قواعد اختصاصی برنامه، سناریوی گردش کار تعریف کنید.</span></div>
+  </section>
+
+  <section id="view-checks" class="view" hidden><div class="panel"><div class="panel-heading"><div><h2>نتایج و شواهد</h2><p>خطای برنامه، هشدار پیکربندی و مشکل محیط اجرا جداگانه مشخص می‌شوند.</p></div><select id="checkFilter" aria-label="فیلتر نتایج"><option value="all">همهٔ بررسی‌ها</option><option value="fail">خطاها</option><option value="warn">هشدارها</option><option value="pass">موفق‌ها</option><option value="skip">اجرانشده‌ها</option></select></div><div id="checksList" class="checks-list"><div class="empty-state">هنوز نتیجه‌ای ثبت نشده است.</div></div></div><div class="panel downloads-panel"><div><h2>دریافت گزارش</h2><p>گزارش HTML مستقل را می‌توانید در مرورگر به PDF چاپ کنید.</p></div><div id="downloads"><span class="muted">پس از پایان اجرا فعال می‌شود.</span></div></div><div class="panel screenshots-panel"><h2>تصاویر ثبت‌شده</h2><div id="screenshots" class="screenshots"></div></div></section>
+
+  <section id="view-resources" class="view" hidden><div class="panel"><div class="panel-heading"><div><h2>مصرف منابع در طول اجرا</h2><p id="scopeHint">فقط فرایندهای سرور؛ مرورگر آزمون در این آمار نیست.</p></div><select id="resourceScope"><option value="application">برنامه مقصد</option><option value="container">کل کانتینر</option><option value="host">کل سیستم میزبان</option></select></div><div class="chart-wrap large"><canvas id="resourcesChart" aria-label="نمودار تفصیلی مصرف منابع"></canvas><div class="chart-empty" id="resourcesChartEmpty">نمونه‌ای ثبت نشده است.</div></div><div id="resourceNumbers" class="resource-numbers"></div></div><div class="panel load-panel"><div class="panel-heading"><div><h2>آزمون فشار HTTP</h2><p>درخواست‌های هم‌زمان؛ نرخ خطا و صدک‌های زمان پاسخ</p></div><span class="micro-label">LATENCY / THROUGHPUT</span></div><div id="loadMetrics" class="load-metrics"><div class="empty-state">هنوز آزمون فشار اجرا نشده است.</div></div><p class="field-note">این آزمون، درخواست HTTP ارسال می‌کند و مرورگر کامل هر کاربر را شبیه‌سازی نمی‌کند. میانگین CPU از نمونه‌های ثبت‌شده محاسبه می‌شود.</p></div></section>
+
+  <section id="view-logs" class="view" hidden><div class="panel"><div class="panel-heading"><div><h2>خروجی اجرای زنده</h2><p>دریافت کد، نصب وابستگی‌ها، تست‌ها و خروجی سرور</p></div><button class="small-button" id="copyLogs">کپی خروجی</button></div><pre id="logs" class="terminal" dir="ltr">No execution yet. Waiting for a new test run…</pre></div></section>
+
+  <section id="view-history" class="view" hidden><div class="panel"><div class="panel-heading"><div><h2>تاریخچه آزمون‌ها</h2><p>هر اجرا با شناسه و Commit مستقل ذخیره می‌شود.</p></div><button class="small-button" id="refreshHistory">تازه‌سازی</button></div><div class="table-scroll"><table><thead><tr><th>مخزن</th><th>تاریخ</th><th>وضعیت</th><th>خطا</th><th>نسخه کد</th><th></th></tr></thead><tbody id="historyRows"></tbody></table></div></div></section>
+  <footer class="page-footer"><span>آزمایار · آزمایش قابل تکرار، شواهد قابل بررسی</span><span>ساخته‌شده برای گردش کار شما</span></footer>
+ </div>
+</main>
+<dialog id="helpDialog"><div class="dialog-header"><h2>شروع کار با آزمایار</h2><button id="closeHelp" class="close-button" aria-label="بستن">×</button></div><p>این برنامه روی کامپیوتر شما اجرا می‌شود. رابط در مرورگر باز می‌شود و کد مقصد داخل Docker اجرا خواهد شد.</p><ol><li><strong>Python 3.11 یا جدیدتر، Git و Docker Desktop</strong> را نصب کنید. در ویندوز، Docker را روی Linux containers بگذارید.</li><li>فایل <bdi>run_windows.bat</bdi> یا <bdi>run_linux_mac.sh</bdi> را اجرا کنید.</li><li>آدرس مخزن عمومی را وارد و «شروع آزمون» را بزنید. در اجرای اول تصویر مرورگر دانلود و ساخته می‌شود.</li><li>نتایج، نمودار منابع، تصاویر و گزارش قابل دانلود را بررسی کنید.</li></ol><p>پروفایل Django خودکار از دیتابیس SQLite تازه استفاده می‌کند. برای دیتابیس دیگر، ورود سفارشی، یا گردش کار ثبت و ارجاع نامه، فرمان و سناریو را در تنظیمات پیشرفته وارد کنید. Node از npm پشتیبانی می‌کند؛ شروع سرور باید روی پورت 8765 باشد.</p><p class="help-note">فقط مخازنی را اجرا کنید که به آن‌ها اعتماد دارید. کانتینر دسترسی اینترنت دارد و مرز امنیتی مطلق نیست. رمز یا دیتابیس تولید را به تنظیمات آزمایش ندهید.</p></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

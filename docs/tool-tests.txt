@@ -1,0 +1,42 @@
+test_crawler_blocks_destructive_and_external_urls (test_core.EvidenceTests.test_crawler_blocks_destructive_and_external_urls) ... ok
+test_csv_has_scope_and_bom (test_core.EvidenceTests.test_csv_has_scope_and_bom) ... ok
+test_django_test_result_counts_failures (test_core.EvidenceTests.test_django_test_result_counts_failures) ... ok
+test_docker_memory_units (test_core.EvidenceTests.test_docker_memory_units) ... ok
+test_latency_percentile_includes_slow_tail (test_core.EvidenceTests.test_latency_percentile_includes_slow_tail) ... ok
+test_no_tests_not_invented (test_core.EvidenceTests.test_no_tests_not_invented) ... ok
+test_report_escapes_target_output (test_core.EvidenceTests.test_report_escapes_target_output) ... ok
+test_resource_scopes_remain_separate (test_core.EvidenceTests.test_resource_scopes_remain_separate) ... ok
+test_snapshot_excludes_database_env_and_symlink (test_core.EvidenceTests.test_snapshot_excludes_database_env_and_symlink) ... ok
+test_zero_and_missing_are_different (test_core.EvidenceTests.test_zero_and_missing_are_different) ... ok
+test_invalid_job_and_path_traversal_return_404 (test_core.HTTPTests.test_invalid_job_and_path_traversal_return_404) ... ok
+test_invalid_json_returns_actionable_error (test_core.HTTPTests.test_invalid_json_returns_actionable_error) ... ok
+test_preview_cannot_run_jobs (test_core.HTTPTests.test_preview_cannot_run_jobs) ... ok
+test_reject_cross_origin_even_with_token (test_core.HTTPTests.test_reject_cross_origin_even_with_token) ... ok
+test_reject_post_without_session_token (test_core.HTTPTests.test_reject_post_without_session_token) ... ok
+test_ui_served_with_content_security_policy (test_core.HTTPTests.test_ui_served_with_content_security_policy) ... ok
+test_only_one_active_run (test_core.OrchestrationTests.test_only_one_active_run) ... ok
+test_quiet_process_can_be_cancelled (test_core.OrchestrationTests.test_quiet_process_can_be_cancelled) ... ok
+test_recovery_marks_previous_incomplete (test_core.OrchestrationTests.test_recovery_marks_previous_incomplete) ... ok
+test_refuses_start_without_docker (test_core.OrchestrationTests.test_refuses_start_without_docker) ... ok
+test_total_deadline_prevents_starting_more_commands (test_core.OrchestrationTests.test_total_deadline_prevents_starting_more_commands) ... ok
+test_worker_event_not_reparsed_from_target_log (test_core.OrchestrationTests.test_worker_event_not_reparsed_from_target_log) ... ok
+test_gitlab_subgroups (test_core.ValidationTests.test_gitlab_subgroups) ... ok
+test_paths_reject_cross_origin (test_core.ValidationTests.test_paths_reject_cross_origin) ... ok
+test_reject_bounds_and_booleans (test_core.ValidationTests.test_reject_bounds_and_booleans) ... ok
+test_reject_branch_option_injection (test_core.ValidationTests.test_reject_branch_option_injection) ... ok
+test_reject_path_escape (test_core.ValidationTests.test_reject_path_escape) ... ok
+test_reject_unsafe_repositories (test_core.ValidationTests.test_reject_unsafe_repositories) ... ok
+test_scenarios_require_steps_and_local_navigation (test_core.ValidationTests.test_scenarios_require_steps_and_local_navigation) ... ok
+test_valid_github_default (test_core.ValidationTests.test_valid_github_default) ... ok
+test_valid_scenario_and_unique_paths (test_core.ValidationTests.test_valid_scenario_and_unique_paths) ... ok
+test_custom_command_preserves_target_virtualenv_path (test_core.WorkerIntegrationTests.test_custom_command_preserves_target_virtualenv_path) ... ok
+test_http_500_is_reported_with_evidence (test_core.WorkerIntegrationTests.test_http_500_is_reported_with_evidence) ... ok
+test_http_login_carries_authenticated_session (test_core.WorkerIntegrationTests.test_http_login_carries_authenticated_session) ... ok
+test_login_redirect_is_error_even_with_http_200 (test_core.WorkerIntegrationTests.test_login_redirect_is_error_even_with_http_200) ... ok
+test_missing_process_does_not_become_zero_usage (test_core.WorkerIntegrationTests.test_missing_process_does_not_become_zero_usage) ... ok
+test_process_monitor_measures_cpu_and_rss (test_core.WorkerIntegrationTests.test_process_monitor_measures_cpu_and_rss) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 4.956s
+
+OK

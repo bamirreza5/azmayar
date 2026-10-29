@@ -1,0 +1,57 @@
+{
+  "repo_url": "https://github.com/bamirreza5/Dideban",
+  "branch": "main",
+  "profile": "django",
+  "subdir": "",
+  "paths": [
+    "/",
+    "/customers/",
+    "/projects/",
+    "/customers/followups/"
+  ],
+  "users": 5,
+  "duration": 15,
+  "max_pages": 12,
+  "run_tests": true,
+  "run_browser": true,
+  "run_load": true,
+  "run_deploy_check": true,
+  "memory_mb": 2048,
+  "cpus": 2,
+  "slow_ms": 1500,
+  "timeout_minutes": 25,
+  "scenarios": [
+    {
+      "name": "ثبت و جست‌وجوی مشتری در دیدبان",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/customers/new/"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name=\"name\"]",
+          "value": "مشتری آزمون آزمایار"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name=\"phone\"]",
+          "value": "09120009999"
+        },
+        {
+          "action": "click",
+          "selector": "form.form-card button[type=\"submit\"]"
+        },
+        {
+          "action": "goto",
+          "value": "/customers/?q=09120009999"
+        },
+        {
+          "action": "expect_text",
+          "selector": "body",
+          "value": "مشتری آزمون آزمایار"
+        }
+      ]
+    }
+  ]
+}

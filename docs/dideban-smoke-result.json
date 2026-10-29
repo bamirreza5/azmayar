@@ -1,0 +1,40 @@
+{
+  "verification_date": "2026-10-29",
+  "repository": "https://github.com/bamirreza5/Dideban",
+  "commit": "5e2e6c46339812d5fa1a2c2db0bc6ce2bfd0ae01",
+  "execution_mode": "Disposable local Python virtual environment; NOT Docker; browser disabled",
+  "unit_tests": {
+    "total": 23,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 23
+  },
+  "http_load": {
+    "requests": 64,
+    "errors": 0,
+    "error_percent": 0.0,
+    "rps": 12.48,
+    "elapsed_s": 5.13,
+    "p50_ms": 9.0,
+    "p95_ms": 15.96,
+    "p99_ms": 17.02,
+    "users": 2,
+    "requested_duration_s": 5,
+    "authenticated": true,
+    "paths": [
+      "/",
+      "/customers/",
+      "/projects/",
+      "/customers/followups/"
+    ],
+    "status_codes": {
+      "200": 64
+    },
+    "error_examples": []
+  },
+  "resource_measurements_verified": false,
+  "browser_automation_verified": false,
+  "docker_pipeline_verified": false,
+  "reason": "Docker unavailable; Chromium worker not executed; host process namespace did not expose target PID to psutil."
+}
